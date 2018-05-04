@@ -104,6 +104,8 @@ CCAST_IMWS_prepareDoc* CCAST_IMWS_prepareView::GetDocument() const // 非调试版本
 void CCAST_IMWS_prepareView::ShowImg()
 {
 	// TODO: 在此添加命令处理程序代码
+	float aa = 0;
+	GetDlgItem(IDOK);
 }
 
 
