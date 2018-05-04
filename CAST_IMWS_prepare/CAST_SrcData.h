@@ -13,7 +13,7 @@ typedef struct
 
 typedef struct
 {
-	int m_PackHeadPos;
+	UINT32 m_PackHeadPos;
 	int m_DataWidth;
 	int m_DataLength;
 	long long m_ProjIdent;
