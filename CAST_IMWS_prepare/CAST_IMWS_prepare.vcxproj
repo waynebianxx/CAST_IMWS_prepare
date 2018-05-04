@@ -189,6 +189,7 @@
     <ClInclude Include="CAST_IMWS_prepare.h" />
     <ClInclude Include="CAST_IMWS_prepareDoc.h" />
     <ClInclude Include="CAST_IMWS_prepareView.h" />
+    <ClInclude Include="CAST_SrcData.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="msword\CApplication.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="CAST_IMWS_prepare.cpp" />
     <ClCompile Include="CAST_IMWS_prepareDoc.cpp" />
     <ClCompile Include="CAST_IMWS_prepareView.cpp" />
+    <ClCompile Include="CAST_SrcData.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="stdafx.cpp">

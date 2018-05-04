@@ -36,13 +36,47 @@
 #define ID_32774                        32774
 #define ID_GONGENNG_LOAD                32775
 #define ID_LINGYIGE_OTHRE               32776
+#define ID_32777                        32777
+#define ID_SHOW_LOAD                    32778
+#define ID_SHOW_INFO                    32779
+#define ID_32780                        32780
+#define ID_32781                        32781
+#define ID_                             32782
+#define ID_AUXL_ANLS                    32783
+#define ID_AUXL_UNANLS                  32784
+#define ID_32785                        32785
+#define ID_32786                        32786
+#define ID_CALC_MTF                     32787
+#define ID_CALC_SNR                     32788
+#define ID_32789                        32789
+#define ID_32790                        32790
+#define ID_32791                        32791
+#define ID_32792                        32792
+#define ID_HEAL_STATIC                  32793
+#define ID_HEAL_DYNMC                   32794
+#define ID_CMP_HRZN                     32795
+#define ID_CMP_VERTC                    32796
+#define ID_32797                        32797
+#define ID_32798                        32798
+#define ID_32799                        32799
+#define ID_32800                        32800
+#define ID_32801                        32801
+#define ID_32802                        32802
+#define ID_32803                        32803
+#define ID_SHOW_                        32804
+#define ID_SHOW_SPESEC1                 32805
+#define ID_SHOW_SPESEC2                 32806
+#define ID_SHOW_SPESEC3                 32807
+#define ID_SHOW_SPESEC4                 32808
+#define ID_SHOW_SPESEC5                 32809
+#define ID_SHOW_SPESEC6                 32810
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        311
-#define _APS_NEXT_COMMAND_VALUE         32777
+#define _APS_NEXT_COMMAND_VALUE         32811
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

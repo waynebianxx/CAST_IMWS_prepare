@@ -223,9 +223,39 @@ BEGIN
     BEGIN
         MENUITEM "关于 CAST_IMWS_prepare(&A)...", ID_APP_ABOUT
     END
-    POPUP "功能"
+    POPUP "显示"
     BEGIN
-        MENUITEM "载入图像",                        ID_GONGENNG_LOAD
+        MENUITEM "载入图像",                        ID_SHOW_LOAD
+        MENUITEM "象元信息",                        ID_SHOW_INFO
+        POPUP "谱段"
+        BEGIN
+            MENUITEM "1",                           ID_SHOW_SPESEC1
+            MENUITEM "2",                           ID_SHOW_SPESEC2
+            MENUITEM "3",                           ID_SHOW_SPESEC3
+            MENUITEM "4",                           ID_SHOW_SPESEC4
+            MENUITEM "5",                           ID_SHOW_SPESEC5
+            MENUITEM "6",                           ID_SHOW_SPESEC6
+        END
+    END
+    POPUP "辅助数据"
+    BEGIN
+        MENUITEM "解析",                          ID_AUXL_ANLS
+        MENUITEM "不解析",                         ID_AUXL_UNANLS
+    END
+    POPUP "图像分析"
+    BEGIN
+        MENUITEM "信噪比",                         ID_CALC_SNR
+        MENUITEM "MTF",                         ID_CALC_MTF
+    END
+    POPUP "健康状态"
+    BEGIN
+        MENUITEM "静态检查",                        ID_HEAL_STATIC
+        MENUITEM "动态检查",                        ID_HEAL_DYNMC
+    END
+    POPUP "图像比对"
+    BEGIN
+        MENUITEM "横向比对",                        ID_CMP_HRZN
+        MENUITEM "纵向比对",                        ID_CMP_VERTC
     END
 END
 

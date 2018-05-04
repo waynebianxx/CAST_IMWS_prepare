@@ -81,6 +81,9 @@
     <ClInclude Include="msword\CTables0.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CAST_SrcData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAST_IMWS_prepare.cpp">
@@ -99,6 +102,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CAST_IMWS_prepareView.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CAST_SrcData.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
