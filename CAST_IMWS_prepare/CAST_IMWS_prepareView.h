@@ -49,6 +49,12 @@ public:
 
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 	virtual void OnInitialUpdate();
+	afx_msg void OnShowLoad();
+	afx_msg void OnShowset();
+	afx_msg void OnShowSpesec1();
+	afx_msg void OnFindData();
+	afx_msg void OnCmpHrzn();
+	afx_msg void On32820();
 };
 
 #ifndef _DEBUG  // CAST_IMWS_prepareView.cpp 中的调试版本

@@ -11,6 +11,11 @@
 
 #include "CAST_IMWS_prepareDoc.h"
 #include "CAST_IMWS_prepareView.h"
+#include "ShowDlg.h"
+#include "PlayBackSetDlg.h"
+#include "FindDataDlg.h"
+#include "ImgCmpSetDlg.h"
+#include "InnerFactTestSetDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,6 +32,12 @@ BEGIN_MESSAGE_MAP(CCAST_IMWS_prepareView, CView)
 	ON_COMMAND(ID_32774, &CCAST_IMWS_prepareView::ShowImg)
 	ON_COMMAND(ID_GONGENNG_LOAD, &CCAST_IMWS_prepareView::OnGongenngLoad)
 	ON_WM_MOUSEWHEEL()
+	ON_COMMAND(ID_SHOW_LOAD, &CCAST_IMWS_prepareView::OnShowLoad)
+	ON_COMMAND(ID_ShowSet, &CCAST_IMWS_prepareView::OnShowset)
+	ON_COMMAND(ID_SHOW_SPESEC1, &CCAST_IMWS_prepareView::OnShowSpesec1)
+	ON_COMMAND(ID_32818, &CCAST_IMWS_prepareView::OnFindData)
+	ON_COMMAND(ID_CMP_HRZN, &CCAST_IMWS_prepareView::OnCmpHrzn)
+	ON_COMMAND(ID_32820, &CCAST_IMWS_prepareView::On32820)
 END_MESSAGE_MAP()
 
 // CCAST_IMWS_prepareView 构造/析构
@@ -161,4 +172,66 @@ void CCAST_IMWS_prepareView::OnInitialUpdate()
 	GetClientRect(&re);
 	this->SetScrollPos(SB_HORZ, 0);
 	this->SetScrollPos(SB_VERT, 0);
+}
+
+
+void CCAST_IMWS_prepareView::OnShowLoad()
+{
+	// TODO: 在此添加命令处理程序代码
+	CFileDialog dlg(TRUE, _T(".bmp"), _T("*.bmp"), OFN_HIDEREADONLY |
+		OFN_OVERWRITEPROMPT, _T("JPEG文件(*.JPEG)|*.JPEG|位图文件(*.bmp)|*.bmp||"));
+	if (dlg.DoModal() == IDOK)
+	{
+		if (!img.IsNull())
+		{
+			img.Destroy();
+		}
+		img.Load(dlg.GetPathName());
+		img_rect.left = 0;
+		img_rect.right = img_rect.left + img.GetWidth();
+		img_rect.top = 0;
+		img_rect.bottom = img_rect.top + img.GetHeight();
+		Invalidate();
+	}
+}
+
+
+void CCAST_IMWS_prepareView::OnShowset()
+{
+	// TODO: 在此添加命令处理程序代码
+	ShowDlg ShDlg;
+	ShDlg.DoModal();
+}
+
+
+void CCAST_IMWS_prepareView::OnShowSpesec1()
+{
+	// TODO: 在此添加命令处理程序代码
+	PlayBackSetDlg ShDlg;
+	ShDlg.DoModal();
+}
+
+
+void CCAST_IMWS_prepareView::OnFindData()
+{
+	// TODO: 在此添加命令处理程序代码
+	FindDataDlg FdDlg;
+	FdDlg.DoModal();
+
+}
+
+
+void CCAST_IMWS_prepareView::OnCmpHrzn()
+{
+	// TODO: 在此添加命令处理程序代码
+	ImgCmpSetDlg CmpDlg;
+	CmpDlg.DoModal();
+}
+
+
+void CCAST_IMWS_prepareView::On32820()
+{
+	// TODO: 在此添加命令处理程序代码
+	InnerFactTestSetDlg InFcStDlg;
+	InFcStDlg.DoModal();
 }

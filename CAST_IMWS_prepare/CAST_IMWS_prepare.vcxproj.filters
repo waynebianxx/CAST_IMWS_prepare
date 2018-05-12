@@ -84,6 +84,21 @@
     <ClInclude Include="CAST_SrcData.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ShowDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayBackSetDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FindDataDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ImgCmpSetDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="InnerFactTestSetDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAST_IMWS_prepare.cpp">
@@ -107,6 +122,21 @@
     <ClCompile Include="CAST_SrcData.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ShowDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayBackSetDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FindDataDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ImgCmpSetDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="InnerFactTestSetDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CAST_IMWS_prepare.rc">
@@ -127,6 +157,9 @@
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="res\Toolbar256.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\toolbar1.bmp">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

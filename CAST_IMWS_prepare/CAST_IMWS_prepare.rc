@@ -86,13 +86,15 @@ IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 
 IDR_MAINFRAME_256       BITMAP                  "res\\Toolbar256.bmp"
 
+IDR_TOOLBAR1            BITMAP                  "res\\toolbar1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Toolbar
 //
 
-IDR_MAINFRAME TOOLBAR 16, 15
+IDR_MAINFRAME TOOLBAR 14, 15
 BEGIN
     BUTTON      ID_FILE_NEW
     BUTTON      ID_FILE_OPEN
@@ -104,6 +106,7 @@ BEGIN
     SEPARATOR
     BUTTON      ID_FILE_PRINT
     BUTTON      ID_APP_ABOUT
+    BUTTON      ID_BUTTON32816
 END
 
 IDR_MAINFRAME_256 TOOLBAR 16, 15
@@ -118,6 +121,11 @@ BEGIN
     SEPARATOR
     BUTTON      ID_FILE_PRINT
     BUTTON      ID_APP_ABOUT
+END
+
+IDR_TOOLBAR1 TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_BUTTON32817
 END
 
 
@@ -226,21 +234,24 @@ BEGIN
     POPUP "显示"
     BEGIN
         MENUITEM "载入图像",                        ID_SHOW_LOAD
-        MENUITEM "象元信息",                        ID_SHOW_INFO
-        POPUP "谱段"
+        MENUITEM "象元信息",                        ID_SHOW_INFO, CHECKED
+        MENUITEM "显示设置",                        ID_ShowSet
+        POPUP "数据回放"
         BEGIN
-            MENUITEM "1",                           ID_SHOW_SPESEC1
-            MENUITEM "2",                           ID_SHOW_SPESEC2
-            MENUITEM "3",                           ID_SHOW_SPESEC3
-            MENUITEM "4",                           ID_SHOW_SPESEC4
-            MENUITEM "5",                           ID_SHOW_SPESEC5
-            MENUITEM "6",                           ID_SHOW_SPESEC6
+            MENUITEM "正常显示",                        ID_SHOW_SPESEC1
+            MENUITEM "手动滚屏",                        ID_SHOW_SPESEC2
         END
+        MENUITEM "查找",                          ID_32818
     END
     POPUP "辅助数据"
     BEGIN
-        MENUITEM "解析",                          ID_AUXL_ANLS
-        MENUITEM "不解析",                         ID_AUXL_UNANLS
+        MENUITEM "生成诊断报告",                      ID_AUXL_ANLS
+        POPUP "绘制"
+        BEGIN
+            MENUITEM "时间计数曲线",                      ID_32813
+            MENUITEM "整秒时刻曲线",                      ID_32814
+            MENUITEM "时钟频率曲线",                      ID_32815
+        END
     END
     POPUP "图像分析"
     BEGIN
@@ -254,8 +265,12 @@ BEGIN
     END
     POPUP "图像比对"
     BEGIN
-        MENUITEM "横向比对",                        ID_CMP_HRZN
-        MENUITEM "纵向比对",                        ID_CMP_VERTC
+        MENUITEM "设置",                          ID_CMP_HRZN
+    END
+    POPUP "内方位元素测试"
+    BEGIN
+        MENUITEM "设置",                          ID_32820
+        MENUITEM "曲线优化",                        ID_32821
     END
 END
 
@@ -331,6 +346,195 @@ BEGIN
     DEFPUSHBUTTON   "确定",IDOK,113,41,50,14,WS_GROUP
 END
 
+IDD_DIALOG1 DIALOGEX 0, 0, 309, 280
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "显示设置"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,124,256,50,14
+    GROUPBOX        "谱段选择",IDC_STATIC,29,17,247,57
+    CONTROL         "谱段1",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,43,32,36,10
+    CONTROL         "谱段2",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,123,32,36,10
+    CONTROL         "谱段3",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,203,32,36,10
+    CONTROL         "谱段4",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,43,53,36,10
+    CONTROL         "谱段5",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,123,53,36,10
+    CONTROL         "谱段6",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,203,53,36,10
+    CONTROL         "",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | TBS_ENABLESELRANGE | WS_TABSTOP,61,114,170,15
+    PUSHBUTTON      "<<",IDC_BUTTON1,46,114,15,14
+    PUSHBUTTON      ">>",IDC_BUTTON2,231,115,16,14
+    LTEXT           "1",IDC_STATIC,94,102,8,8
+    LTEXT           "2",IDC_STATIC,119,102,8,8
+    LTEXT           "3",IDC_STATIC,144,102,8,8
+    LTEXT           "4",IDC_STATIC,169,102,8,8
+    LTEXT           "5",IDC_STATIC,194,102,8,8
+    LTEXT           "6",IDC_STATIC,219,102,8,8
+    LTEXT           "0",IDC_STATIC,69,102,8,8
+    GROUPBOX        "显示位选择",IDC_STATIC,29,83,248,54
+    GROUPBOX        "局部显示",IDC_STATIC,30,146,246,62
+    LTEXT           "起始坐标X:",IDC_STATIC,45,164,40,8
+    LTEXT           "起始坐标Y:",IDC_STATIC,45,184,40,8
+    LTEXT           "显示宽度：",IDC_STATIC,162,164,41,8
+    LTEXT           "显示高度：",IDC_STATIC,162,184,41,8
+    EDITTEXT        IDC_EDIT1,91,162,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,91,183,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,205,162,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,205,183,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "辅助数据",IDC_STATIC,31,214,245,32
+    CONTROL         "解析",IDC_RADIO7,"Button",BS_AUTORADIOBUTTON | WS_GROUP,87,228,32,10
+    CONTROL         "不解析",IDC_RADIO8,"Button",BS_AUTORADIOBUTTON,190,228,40,10
+END
+
+IDD_DIALOG2 DIALOGEX 0, 0, 214, 82
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "辅助信息"
+FONT 10, "微软雅黑", 400, 0, 0x86
+BEGIN
+    LTEXT           "辅助数据包头位置(2Byte)",IDC_STATIC,34,18,75,9
+    LTEXT           "辅助数据宽度(2Byte)",IDC_STATIC,46,30,63,8
+    LTEXT           "辅助数据长度(2Byte)",IDC_STATIC,47,41,62,9
+    LTEXT           "项目标识(8Byte)",IDC_STATIC,59,53,50,8
+    LTEXT           "0xff ff",IDC_STATIC,115,18,19,8
+    LTEXT           "0xff ff",IDC_STATIC,115,30,19,8
+    LTEXT           "0xff ff",IDC_STATIC,115,42,19,8
+    LTEXT           "0xff ff ff ff ff ff ff ff",IDC_STATIC,115,54,57,8
+END
+
+IDD_DIALOG3 DIALOGEX 0, 0, 222, 176
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "回放参数设置"
+FONT 10, "微软雅黑", 400, 0, 0x86
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,78,147,50,14
+    LTEXT           "回放速度",IDC_STATIC,59,24,27,8
+    LTEXT           "ms",IDC_STATIC,133,24,10,8
+    LTEXT           "跳帧数量",IDC_STATIC,60,45,26,8
+    LTEXT           "回放规则",IDC_STATIC,60,66,26,8
+    LTEXT           "起始回放位置",IDC_STATIC,46,87,40,8
+    LTEXT           "终止回放位置",IDC_STATIC,46,108,40,8
+    EDITTEXT        IDC_EDIT1,92,24,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,92,45,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,92,83,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,92,104,40,14,ES_AUTOHSCROLL
+    CONTROL         "当前目录",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,92,66,38,10
+    CONTROL         "递归子目录",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,147,66,43,10
+    PUSHBUTTON      "...",IDC_BUTTON1,137,83,14,14
+    PUSHBUTTON      "...",IDC_BUTTON3,137,104,14,14
+    COMBOBOX        IDC_COMBO1,91,126,48,68,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "回放书签",IDC_STATIC,57,128,27,8
+END
+
+IDD_DIALOG4 DIALOGEX 0, 0, 307, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "查找"
+FONT 10, "微软雅黑", 400, 0, 0x86
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,134,165,50,14
+    LTEXT           "图像行数",IDC_STATIC,57,27,26,8
+    LTEXT           "增益值",IDC_STATIC,63,54,20,8
+    LTEXT           "积分时间值",IDC_STATIC,50,81,33,8
+    LTEXT           "级数",IDC_STATIC,70,106,13,8
+    LTEXT           "算法",IDC_STATIC,181,28,15,8
+    LTEXT           "滤波档位",IDC_STATIC,169,54,27,8
+    LTEXT           "箝位系数",IDC_STATIC,170,80,26,8
+    LTEXT           "存放日期",IDC_STATIC,168,106,28,8
+    LTEXT           "搜索目录",IDC_STATIC,61,134,33,8
+    EDITTEXT        IDC_EDIT1,91,27,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,91,52,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,91,77,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,91,102,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,200,27,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT6,200,52,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT7,200,77,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT8,200,102,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT9,91,131,122,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON1,215,131,18,14
+END
+
+IDD_DIALOG5 DIALOGEX 0, 0, 337, 243
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "图像比对设置"
+FONT 10, "微软雅黑", 400, 0, 0x86
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,128,217,50,14
+    LTEXT           "图像行数",IDC_STATIC,51,64,26,8
+    LTEXT           "增益值",IDC_STATIC,56,96,21,8
+    LTEXT           "积分时间值",IDC_STATIC,44,128,33,8
+    LTEXT           "级数",IDC_STATIC,60,160,17,8
+    LTEXT           "算法",IDC_STATIC,180,32,14,8
+    LTEXT           "滤波档位",IDC_STATIC,167,64,27,8
+    LTEXT           "箝位系数",IDC_STATIC,167,96,27,8
+    LTEXT           "存放日期",IDC_STATIC,166,128,28,8
+    EDITTEXT        IDC_EDIT1,85,63,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,85,94,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,85,125,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,85,156,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,199,32,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT6,199,63,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT7,199,94,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT8,199,125,53,12,ES_AUTOHSCROLL
+    LTEXT           "相机标识",IDC_STATIC,50,32,27,8
+    EDITTEXT        IDC_EDIT9,85,32,53,12,ES_AUTOHSCROLL
+    LTEXT           "计算行数",IDC_STATIC,166,158,28,8
+    EDITTEXT        IDC_EDIT10,199,156,21,12,ES_AUTOHSCROLL
+    LTEXT           "-----",IDC_STATIC,223,157,16,8
+    EDITTEXT        IDC_EDIT11,241,156,21,12,ES_AUTOHSCROLL
+    GROUPBOX        "CCD片内",IDC_STATIC,52,179,209,31
+    CONTROL         "正序",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,100,192,29,10
+    CONTROL         "倒序",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,185,192,29,10
+END
+
+IDD_DIALOG6 DIALOGEX 0, 0, 297, 251
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "内方位元素测试"
+FONT 10, "微软雅黑", 400, 0, 0x86
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,118,228,50,14
+    GROUPBOX        "转台角度值",IDC_STATIC,25,41,123,40
+    LTEXT           "图像编号",IDC_STATIC,25,17,27,8
+    EDITTEXT        IDC_EDIT1,54,14,40,14,ES_AUTOHSCROLL
+    LTEXT           "度",IDC_STATIC,30,58,8,8
+    EDITTEXT        IDC_EDIT2,43,55,22,14,ES_AUTOHSCROLL
+    LTEXT           "分",IDC_STATIC,68,58,8,8
+    EDITTEXT        IDC_EDIT3,65,104,40,14,ES_AUTOHSCROLL
+    LTEXT           "秒",IDC_STATIC,106,58,8,8
+    EDITTEXT        IDC_EDIT4,215,56,16,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,81,55,22,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT6,119,55,22,14,ES_AUTOHSCROLL
+    GROUPBOX        "质心计算",IDC_STATIC,24,87,251,63
+    LTEXT           "方差阈值",IDC_STATIC,35,106,27,8
+    LTEXT           "测试区域列数范围",IDC_STATIC,160,58,55,8
+    LTEXT           "质心计算Y",IDC_STATIC,195,106,32,8
+    LTEXT           "质心计算H",IDC_STATIC,195,127,32,8
+    EDITTEXT        IDC_EDIT7,243,56,16,14,ES_AUTOHSCROLL
+    LTEXT           "质心计算W",IDC_STATIC,115,127,35,8
+    EDITTEXT        IDC_EDIT8,151,123,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT9,228,123,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT10,66,169,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT11,148,168,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "图像保存",IDC_STATIC,24,156,251,70
+    LTEXT           "保存行数",IDC_STATIC,36,172,27,8
+    LTEXT           "保存区域X",IDC_STATIC,112,171,31,8
+    LTEXT           "保存区域Y",IDC_STATIC,192,171,32,8
+    LTEXT           "保存区域H",IDC_STATIC,192,191,32,8
+    EDITTEXT        IDC_EDIT12,225,168,40,14,ES_AUTOHSCROLL
+    LTEXT           "保存区域W",IDC_STATIC,112,192,35,8
+    EDITTEXT        IDC_EDIT13,148,188,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT14,225,188,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT15,65,188,40,14,ES_AUTOHSCROLL
+    LTEXT           "图像数量",IDC_STATIC,35,190,27,8
+    COMBOBOX        IDC_COMBO2,65,208,48,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "图像谱段",IDC_STATIC,37,210,27,8
+    LTEXT           "保存格式",IDC_STATIC,147,209,27,8
+    CONTROL         "RAW",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,177,208,31,10
+    CONTROL         "BMP",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,208,208,31,10
+    PUSHBUTTON      "输出质心位置并绘图",IDC_BUTTON1,38,123,70,14
+    GROUPBOX        "一致性修正",IDC_STATIC,151,41,123,40
+    LTEXT           "质心计算X",IDC_STATIC,116,106,35,8
+    EDITTEXT        IDC_EDIT16,151,102,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT17,228,102,40,14,ES_AUTOHSCROLL
+    LTEXT           "~",IDC_STATIC,234,58,8,8
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -386,8 +590,111 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 55
     END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 302
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 273
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        TOPMARGIN, 7
+    END
+
+    IDD_DIALOG3, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 215
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 169
+    END
+
+    IDD_DIALOG4, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 300
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 192
+    END
+
+    IDD_DIALOG5, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 330
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 236
+    END
+
+    IDD_DIALOG6, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 290
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 244
+    END
 END
 #endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_DIALOG1 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG2 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG3 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG4 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG5 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG6 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DIALOG3 DLGINIT
+BEGIN
+    IDC_COMBO1, 0x403, 6, 0
+0xe9ca, 0xa9c7, 0x0031, 
+    IDC_COMBO1, 0x403, 6, 0
+0xe9ca, 0xa9c7, 0x0032, 
+    IDC_COMBO1, 0x403, 6, 0
+0xe9ca, 0xa9c7, 0x0033, 
+    IDC_COMBO1, 0x403, 6, 0
+0xe9ca, 0xa9c7, 0x0034, 
+    IDC_COMBO1, 0x403, 6, 0
+0xe9ca, 0xa9c7, 0x0035, 
+    0
+END
 
 
 /////////////////////////////////////////////////////////////////////////////
